@@ -10,8 +10,9 @@
     `(defn ~n
        ~docstring
        [elements#]
-       (filter (fn [t#] (re-find ~r (second t#))) elements#))))
-
+       (filter (fn [t#] (re-find ~r (:tag t#))) 
+               (remove #(nil? (:tag %)) elements#)))))
+       
 (defmacro chunk-filter
   "Declare a filter for treebank-chunked lists with the given name and regex."
   [n r]
